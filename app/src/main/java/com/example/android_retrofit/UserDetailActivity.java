@@ -1,4 +1,4 @@
-package com.example.simplebackgroundtask;
+package com.example.android_retrofit;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.android_retrofit.R;
 import com.example.android_retrofit.api.ApiClient;
 import com.example.android_retrofit.model.User;
-import com.example.simplebackgroundtask.api.ApiClient;
-import com.example.simplebackgroundtask.model.User;
+import com.example.android_retrofit.api.ApiClient;
+import com.example.android_retrofit.model.User;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
 
 public class UserDetailActivity extends AppCompatActivity {
 
@@ -50,12 +51,12 @@ public class UserDetailActivity extends AppCompatActivity {
             int userId = Integer.parseInt(tvUserId.getText().toString());
             ApiClient.getAPI().deleteUser(userId).enqueue(new Callback<User>() {
                 @Override
-                public void onResponse(Call<User> call, Response<User> response) {
+                public void onResponse(retrofit2.Call<User> call, Response<User> response) {
                     tvMessage.setText(response.message());
                 }
 
                 @Override
-                public void onFailure(Call<User> call, Throwable t) {
+                public void onFailure(retrofit2.Call<User> call, Throwable t) {
                     tvMessage.setText(t.getMessage());
                 }
             });
@@ -76,7 +77,7 @@ public class UserDetailActivity extends AppCompatActivity {
                 User data = getUserFromInput();
                 ApiClient.getAPI().putUser(data, data.id).enqueue(new Callback<User>() {
                     @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
+                    public void onResponse(retrofit2.Call<User> call, Response<User> response) {
                         if (response.body() != null) {
                             updateUI(response.body());
                         }
@@ -84,7 +85,7 @@ public class UserDetailActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onFailure(Call<User> call, Throwable t) {
+                    public void onFailure(retrofit2.Call<User> call, Throwable t) {
                         tvMessage.setText(t.getMessage());
                     }
                 });
@@ -100,7 +101,7 @@ public class UserDetailActivity extends AppCompatActivity {
                 Log.d("USER", data.toString());
                 ApiClient.getAPI().postUser(data).enqueue(new Callback<User>() {
                     @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
+                    public void onResponse(retrofit2.Call<User> call, Response<User> response) {
                         if (response.body() != null) {
                             updateUI(response.body());
                         }

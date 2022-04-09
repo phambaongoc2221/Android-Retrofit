@@ -1,5 +1,7 @@
 package com.example.android_retrofit.adapter;
 
+
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -12,9 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_retrofit.R;
 import com.example.android_retrofit.model.User;
-import com.example.simplebackgroundtask.R;
-import com.example.simplebackgroundtask.UserDetailActivity;
-import com.example.simplebackgroundtask.model.User;
 
 import java.util.ArrayList;
 
@@ -43,7 +42,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserVi
         holder.tvUserName.setText(mCurrent);
 
         holder.itemView.setOnClickListener(view -> {
-            Intent intent = new Intent(context, UserDetailActivity.class);
+            Intent intent = new Intent(context, com.example.android_retrofit.UserDetailActivity.class);
             intent.putExtra("userId", user.id);
             intent.putExtra("userName", user.name);
             intent.putExtra("userEmail", user.email);

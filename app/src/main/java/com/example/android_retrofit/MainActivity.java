@@ -1,8 +1,7 @@
-package com.example.simplebackgroundtask;
+package com.example.android_retrofit;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -13,14 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.android_retrofit.R;
+import com.example.android_retrofit.adapter.UserListAdapter;
+import com.example.android_retrofit.api.ApiClient;
 import com.example.android_retrofit.model.User;
-import com.example.simplebackgroundtask.adapter.UserListAdapter;
-import com.example.simplebackgroundtask.api.ApiClient;
-import com.example.simplebackgroundtask.model.User;
+import com.example.android_retrofit.adapter.UserListAdapter;
+import com.example.android_retrofit.api.ApiClient;
+import com.example.android_retrofit.model.User;
 
 import java.util.ArrayList;
-
-import javax.security.auth.callback.Callback;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnRefresh).callOnClick();
 
         findViewById(R.id.btnCreate).setOnClickListener(view -> {
-            Intent intent = new Intent(this, UserDetailActivity.class);
+            Intent intent = new Intent(this, com.example.android_retrofit.UserDetailActivity.class);
             intent.putExtra("userId", 0);
             startActivity(intent);
         });
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         progressBar.setVisibility(View.VISIBLE);
         ApiClient.getAPI().getAllUsers().enqueue(new Callback<ArrayList<User>>() {
             @Override
-            public void onResponse(@NonNull Call<ArrayList<User>> call, @NonNull Response<ArrayList<User>> response) {
+            public void onResponse(@NonNull retrofit2.Call<ArrayList<User>> call, @NonNull Response<ArrayList<User>> response) {
                 ArrayList<User> userList = response.body();
                 mTextView.setText("Number of Users: " + userList.size());
                 mWordList.addAll(userList);
