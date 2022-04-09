@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SimpleBackgroundTask</string>
+    <string name="ready_to_start">I am ready to start work!</string>
+    <string name="start_task">Refresh</string>
+    <string name="loading">Loading…</string>
+    <string name="create">Create</string>
+</resources>
